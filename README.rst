@@ -34,3 +34,27 @@ rfid-mcast-print
 This software opens a socket to the multicast IP address and port that receives
 information about RFID tags and begins printing the TAG data.
 
+
+Notes on CHUMP commands
+=======================
+
+We've detected a tag has the format::
+  {Rd,d:<tag id>[,t:protocol type>][,r:<repeat count>]
+          [,n:<antenna port number>]; <FCS><CRLF>
+e.g::
+  {Rd,d:3005FB63AC1F3841EC880467,t:EPC1G2;DF
+
+
+Read all data from a tag is:
+
+}Ra[,a:<blk addr>][,s:offset][,f:xx][,l:<length>];<FCS><CRLF>
+
+specifically:
+}Ra,a:1!
+}Ra,a:3005FB63AC1F3841EC880467!
+
+}Rt,d:3005FB63AC1F3841EC880467!
+}Rt,d:3005FB63AC1F3841EC880467!
+}Ys,d:3005FB63AC1F3841EC880467!
+}Ys,d:3005FB63AC1F3841EC880467;
+
